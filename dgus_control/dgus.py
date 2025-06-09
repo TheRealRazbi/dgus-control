@@ -6,19 +6,46 @@
 
 import time
 from dataclasses import dataclass
+from pathlib import Path
 
 from stageclick import Window
+from termcolor import cprint
 
 from dgus_control.constants import DGUS_TITLE
 
 
+class DGUSAlreadyStarted(Exception):
+    ...
+
+
 @dataclass
-class Dgus:
-    window: Window
+class DGUSTemplates:
+    location: Path
+
+
+class DGUS:
+    def __init__(self, window: Window):
+        self.window = window
 
     @classmethod
-    def find(cls, timeout=0):
-        return cls(Window.find(DGUS_TITLE, timeout=timeout))
+    def find_or_start(cls):
+        raise NotImplementedError
+
+    @classmethod
+    def start(cls, exe_path, wait_until_ready=False, ready_timeout=10, is_ready_template=None, title=DGUS_TITLE):
+        if cls.find(title=title):
+            raise DGUSAlreadyStarted
+        window = Window.start_and_find(exe_path=exe_path, title=title, wait_seconds=6)
+        if wait_until_ready:
+            if is_ready_template is None:
+                cprint("Skipping is_ready_template because it wasn't provided", "red")
+                return cls(window)
+            window.wait_for_template(is_ready_template, timeout=ready_timeout)
+        return cls(window)
+
+    @classmethod
+    def find(cls, timeout=0, title=DGUS_TITLE):
+        return cls(Window.find(title, timeout=timeout))
 
     def select(self):
         already_selected = self.window.visible
