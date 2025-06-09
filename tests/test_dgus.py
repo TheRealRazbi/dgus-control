@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import MagicMock, patch
-from dgus_control.dgus import DGUS, DGUSAlreadyStarted, DGUSTemplates
-from stageclick import Window
+from dgus_control.dgus import DGUS, DGUSAlreadyStarted
+from stageclick.core import Window
 
 
 def test_start_raises_if_dgus_already_running():
