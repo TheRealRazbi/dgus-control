@@ -6,11 +6,11 @@
 
 from importlib.metadata import version, PackageNotFoundError
 from .constants import DGUS_TITLE
-from .dgus import Dgus
+from .dgus import DGUS
 
 try:
     __version__ = version("stage-click")
 except PackageNotFoundError:
     __version__ = "unknown"
 
-__all__ = ['version', 'constants', 'dgus']
+__all__ = ['version', 'constants', 'DGUS']
