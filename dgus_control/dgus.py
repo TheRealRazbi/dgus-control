@@ -8,7 +8,7 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-from stageclick import Window
+from stageclick import Window, WindowNotFound
 from termcolor import cprint
 
 from dgus_control.constants import DGUS_TITLE
@@ -33,8 +33,11 @@ class DGUS:
 
     @classmethod
     def start(cls, exe_path, wait_until_ready=False, ready_timeout=10, is_ready_template=None, title=DGUS_TITLE):
-        if cls.find(title=title):
-            raise DGUSAlreadyStarted
+        try:
+            if cls.find(title=title):
+                raise DGUSAlreadyStarted
+        except WindowNotFound:
+            ...
         window = Window.start_and_find(exe_path=exe_path, title=title, wait_seconds=6)
         if wait_until_ready:
             if is_ready_template is None:
