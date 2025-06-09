@@ -41,7 +41,7 @@ class ManualStarter:
     def _input_function(self):
         def _is_valid(n):
             try:
-                path = Path(n)
+                path = Path(n.strip('\'"'))
             except Exception as e:
                 cprint(f"Error: {e}", "red")
                 return
@@ -55,8 +55,9 @@ class ManualStarter:
                 return
 
         def _process_result(n):
-            window = self._find_dgus_by_exe_path(n)
+            window = self._find_dgus_by_exe_path(n.strip('\'"'))
             window.set_title(self.title)
+            return window
 
         return grab_input_once(_is_valid, _process_result)
 
