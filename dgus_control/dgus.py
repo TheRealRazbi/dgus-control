@@ -12,6 +12,7 @@ from stageclick import Window, WindowNotFound
 from termcolor import cprint
 
 from dgus_control.constants import DGUS_TITLE
+from dgus_control.project_picker import DGUSPicker
 
 
 class DGUSAlreadyStarted(Exception):
@@ -24,8 +25,9 @@ class DGUSTemplates:
 
 
 class DGUS:
-    def __init__(self, window: Window):
+    def __init__(self, window: Window, picker: DGUSPicker = None):
         self.window = window
+        self.picker = picker
 
     @classmethod
     def find_or_start(cls):
