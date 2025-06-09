@@ -60,7 +60,7 @@ class ManualStarter:
 
         return grab_input_once(_is_valid, _process_result)
 
-    def start(self):
+    def start(self, *args, **kwargs):
         self.runner.step("Please start the DGUS manually, 'done' when ready", is_done, skip_allowed=False)
         self.runner.step("Provide the path to the DGUS executable", self._input_function(), skip_allowed=False,
                          save_key="dgus_window")
