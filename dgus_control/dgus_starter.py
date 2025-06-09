@@ -4,13 +4,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from importlib.metadata import version, PackageNotFoundError
-from .constants import DGUS_TITLE
-from .dgus import DGUS
+from typing import Protocol
 
-try:
-    __version__ = version("stage-click")
-except PackageNotFoundError:
-    __version__ = "unknown"
 
-__all__ = ['version', 'constants', 'DGUS']
+class DGUSStarter(Protocol):
+    def start(self, *args, **kwargs) -> None:
+        ...
+
+
+class ManualStarter:
+    def start(self):
+        raise NotImplementedError
+
+
+class ExeStarter:
+    def start(self):
+        raise NotImplementedError

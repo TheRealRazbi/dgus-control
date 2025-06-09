@@ -4,13 +4,4 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from importlib.metadata import version, PackageNotFoundError
-from .constants import DGUS_TITLE
-from .dgus import DGUS
-
-try:
-    __version__ = version("stage-click")
-except PackageNotFoundError:
-    __version__ = "unknown"
-
-__all__ = ['version', 'constants', 'DGUS']
+DGUS_TITLE = "AUTOMATED_DGUS"

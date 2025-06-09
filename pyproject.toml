@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dgus-control"
-version = "0.1.0.dev1"
+version = "0.1.0.dev9"
 description = "DGUS UI automation toolkit (not affiliated with or endorsed by DWIN Technology or DGUS)"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -18,6 +18,9 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Operating System :: Microsoft :: Windows",
     "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)"
+]
+dependencies = [
+    "stage-click>=0.0.1.dev2,<1.0",
 ]
 
 [project.urls]
