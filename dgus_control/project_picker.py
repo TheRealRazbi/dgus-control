@@ -6,7 +6,7 @@
 
 from typing import Protocol
 
-from stageclick import Window
+from stageclick.core import Window
 
 
 class DGUSPicker(Protocol):

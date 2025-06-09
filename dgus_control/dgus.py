@@ -8,7 +8,7 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 
-from stageclick import Window, WindowNotFound
+from stageclick.core import Window, WindowNotFound
 from termcolor import cprint
 
 from dgus_control.constants import DGUS_TITLE
