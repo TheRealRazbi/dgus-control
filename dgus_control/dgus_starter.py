@@ -67,11 +67,11 @@ class ManualStarter:
         window: Window = self.runner.state['dgus_window']
         return window
 
-    def find(self, *args, skip_start=False, **kwargs):
+    def find(self, *args, **kwargs):
         try:
             return Window.find(self.title)
         except WindowNotFound:
-            if not skip_start:
+            if not kwargs.get('skip_start', False):
                 self.runner.step(f"Window with title {self.title} not found, y for start(), n for quit()",
                                  grab_y_n_bool(), skip_allowed=False, save_key="start_confirm")
                 if self.runner.state["start_confirm"]:
